@@ -68,7 +68,7 @@ class WorkItemController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->addWorkItem()) {
                 Yii::$app->session->setFlash('success', 'Work item ' . $model->name . ' added successfully!');
-                return $this->render('index');
+                return $this->redirect('index');
             }
         }
 

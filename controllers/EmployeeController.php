@@ -93,7 +93,7 @@ class EmployeeController extends Controller
 
             if ($model->addEmployee()) {
                 Yii::$app->session->setFlash('success', 'Employee ' . $model->name . ' added successfully!');
-                return $this->render('index');
+                return $this->redirect('index');
             }
         }
 

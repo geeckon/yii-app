@@ -57,7 +57,7 @@ class ConstructionSiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->addConstructionSite()) {
                 Yii::$app->session->setFlash('success', 'Construction site ' . $model->name . ' added successfully!');
-                return $this->render('index');
+                return $this->redirect('index');
             }
         }
 
