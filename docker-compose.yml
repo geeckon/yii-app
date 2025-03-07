@@ -6,7 +6,7 @@ services:
     container_name: yii_app_db
     image: mariadb
     ports:
-      - "3306:3306"
+      - "33060:3306"
     networks:
       - yii_app_network
     environment:
