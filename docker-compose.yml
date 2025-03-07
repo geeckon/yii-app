@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  db:
+    hostname: yii_app_db
+    container_name: yii_app_db
+    image: mariadb
+    ports:
+      - "3306:3306"
+    networks:
+      - yii_app_network
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+      MYSQL_PASSWORD: qwerty
+      MYSQL_USER: db_user
+      MYSQL_DATABASE: db_db
+
+  nginx:
+    hostname: yii_app_nginx
+    container_name: yii_app_nginx
+    image: nginx
+    ports:
+      - "8080:80"
+      - "4433:443"
+    networks:
+      - yii_app_network
+    volumes:
+      - ./:/var/www/yii_app/
+      - ./docker/conf.d/:/etc/nginx/conf.d/
+
+  app:
+    image: yii_app
+    hostname: app
+    container_name: yii_app
+    volumes:
+      - .:/var/www/yii_app
+    working_dir: /var/www/yii_app
+    ports:
+      - "9000:9000"
+    networks:
+      - yii_app_network
+    environment:
+      VIRTUAL_HOST: yii_app.local
+      DB_HOST: yii_app_db
+      DB_PASSWORD: qwerty
+      DB_USERNAME: db_user
+      DB_DATABASE: db_db
+
+
+networks:
+  yii_app_network:
+    driver: bridge
+
