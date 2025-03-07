@@ -16,3 +16,7 @@ $this->title = 'My Yii Application';
     <li>franklin - franklin</li>
 
 </ul>
+
+<p>
+    To check employees and managers that need access to a construction site, call: <a href="/construction-site/check-employees?id=1">/construction-site/check-employees?id=1</a>
+</p>
